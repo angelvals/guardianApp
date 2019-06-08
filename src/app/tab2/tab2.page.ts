@@ -17,8 +17,7 @@ export class Tab2Page {
     private oneSignal: OneSignal
   ) {}
 
-  register() {
-    
+  ionViewDidEnter() {
     this.oneSignal.startInit(environment.ONESIGNAL_APP_ID);
 
     this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
@@ -31,27 +30,27 @@ export class Tab2Page {
       // do something when a notification is opened
     });
 
-    
+    this.oneSignal.endInit();
+  }
+
+  register() {
     this.oneSignal.setSubscription(true);
 
     this.oneSignal.getIds().then((ids)=>{
       //Register userId with user
       console.log(ids);
     });
-    
-    this.oneSignal.endInit();
-     
   }
 
-  newPush() {
+  newPush(form) {
     this.oneSignal.getIds().then((ids)=>{
       this.http.post(this.url+"sendNotification", { 
         players: [ids.userId], 
-        heading: "Hola mundo",
-        text: "Texto de prueba",
+        heading: form.value.header,
+        text: form.value.text,
         data: {}
       }).subscribe((response) => {
-        console.log(response);
+        form.reset();
       });
     });
   }
