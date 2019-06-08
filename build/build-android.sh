@@ -52,3 +52,6 @@ read -p "Press any key..."
 
 #changeit
 #keytool -genkey -v -keystore angel.keystore -alias angel -keyalg RSA -keysize 2048 -validity 10000
+#keytool -list -printcert -jarfile .\Guardian.apk
+#just in case
+#adb uninstall com.corp.guardian
