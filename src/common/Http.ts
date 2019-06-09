@@ -6,8 +6,12 @@ import { environment } from '../environments/environment';
 export class PresentationUrlEndpointInfo {
   static get keys(): Keys {
     return {
+      users: 'user/',
       usersession: 'user/sess',
+      logout: 'user/logout',
       sendPush: 'push/sendNotification',
+      registerPush: 'push/register',
+      unRegisterPush: 'push/unRegister',
     };
   }
 
@@ -25,6 +29,10 @@ export class PresentationUrlEndpointInfo {
 }
 
 interface Keys {
+  users: string;
   usersession: string;
+  logout: string;
   sendPush: string;
+  registerPush: string;
+  unRegisterPush: string;
 }

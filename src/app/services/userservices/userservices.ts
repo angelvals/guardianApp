@@ -15,6 +15,22 @@ export class UserServices {
         return this.http.get(PresentationUrlEndpointInfo.keys.usersession);
     }
 
+    getAllUsers() {
+        return this.http.get(PresentationUrlEndpointInfo.keys.users);
+    }
+
+    logOut() {
+        return this.http.get(PresentationUrlEndpointInfo.keys.logout);
+    }
+
+    registerPush(data: object) {
+        return this.http.post(PresentationUrlEndpointInfo.keys.registerPush, data);   
+    }
+    
+    unRegisterPush(data: object) {
+        return this.http.post(PresentationUrlEndpointInfo.keys.unRegisterPush, data);   
+    }
+
     sendPush(data: object) {
         return this.http.post(PresentationUrlEndpointInfo.keys.sendPush, data);
     }
