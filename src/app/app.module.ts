@@ -6,10 +6,14 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
+import { IonicStorageModule } from '@ionic/storage';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { AuthGuard } from './guards/auth.guard';
+import { TokenInterceptorProvider } from './services/token-interceptor/token-interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule, 
     IonicModule.forRoot(),
+    IonicStorageModule.forRoot({ name: 'storage', storeName: 'storage', driverOrder: ['localstorage'] }),
     HttpClientModule, 
     AppRoutingModule
   ],
@@ -24,7 +29,13 @@ import { HttpClientModule } from '@angular/common/http';
     StatusBar,
     SplashScreen,
     OneSignal,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorProvider,
+      multi: true,
+    },
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
