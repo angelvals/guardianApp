@@ -1,9 +1,19 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Three
+      Settings
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-icon primary name="send" slot="start"></ion-icon>
+      <ion-label>Push</ion-label>
+      <ion-toggle [(ngModel)]="this.pushEnabled" (ngModelChange)="toggleTouch($event)">
+      </ion-toggle>
+    </ion-item>
+  </ion-list>
+  <ion-button  size="large" (click)="logOut()" expand="block">Log out</ion-button>
+</ion-content>

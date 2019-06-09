@@ -12,7 +12,7 @@ export class UserServices {
     constructor(private http: HttpService, private alertController: AlertController) { }
 
     getUserSession() {
-        return this.http.post(PresentationUrlEndpointInfo.keys.usersession);
+        return this.http.get(PresentationUrlEndpointInfo.keys.usersession);
     }
 
     sendPush(data: object) {

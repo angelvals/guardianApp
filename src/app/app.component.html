@@ -1,3 +1,4 @@
 <ion-app>
+  <ng-container *ngIf="loggedIn | async"></ng-container>
   <ion-router-outlet></ion-router-outlet>
 </ion-app>

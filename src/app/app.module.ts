@@ -14,6 +14,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AuthGuard } from './guards/auth.guard';
 import { TokenInterceptorProvider } from './services/token-interceptor/token-interceptor';
+import { LoadingInterceptor } from './services/loading-interceptor/loading-interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,6 +34,11 @@ import { TokenInterceptorProvider } from './services/token-interceptor/token-int
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorProvider,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
       multi: true,
     },
     AuthGuard

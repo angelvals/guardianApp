@@ -1,20 +1,12 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Two
+      Push Notification
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-button  (click)="register()">
-    Register
-  </ion-button>
-
-  <ion-button  (click)="unregister()">
-    Unregister
-  </ion-button>
-
+<ion-content>
   <ion-card>
     <ion-card-header>
       <ion-card-subtitle>Push</ion-card-subtitle>
@@ -26,7 +18,7 @@
           <ion-grid>
             <ion-row color="primary" justify-content-center>
               <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-                <div padding>
+                <div>
                   <ion-item>
                     <ion-input  name="header" type="text" placeholder="Header" ngModel required></ion-input>
                   </ion-item>
