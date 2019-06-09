@@ -31,7 +31,7 @@ export class Tab3Page {
   getUser() {
     this.userServices.getUserSession().pipe(
       map((response: any) => {
-        this.pushEnabled = !!response.PushToken;
+        this.pushEnabled = this.pushToken == response.PushToken;
         return of (null);
       })
     ).subscribe();
