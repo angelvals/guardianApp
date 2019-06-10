@@ -23,7 +23,6 @@ export class Tab2Page {
         response.map((user: any) => {
           if(user.PushToken) this.players.push(user.PushToken)
         });
-        console.log(this.players);
         return of (null);
       })
     ).subscribe();
