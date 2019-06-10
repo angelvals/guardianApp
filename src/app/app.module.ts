@@ -8,6 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { IonicStorageModule } from '@ionic/storage';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -30,6 +31,7 @@ import { LoadingInterceptor } from './services/loading-interceptor/loading-inter
     StatusBar,
     SplashScreen,
     OneSignal,
+    Geolocation,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {
       provide: HTTP_INTERCEPTORS,
