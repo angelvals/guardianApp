@@ -15,6 +15,7 @@ export class Tab2Page {
   players: any = [];
   latitude: number = 0;
   longitude: number = 0;
+  subscription: any;
 
   constructor(
     private userServices: UserServices,
@@ -22,6 +23,8 @@ export class Tab2Page {
   ) {}
 
   ionViewDidEnter() {
+    this.latitude = 0;
+    this.longitude = 0;
     this.players = [];
     this.userServices.getAllUsers().pipe(
       map((response: any) => {
@@ -38,19 +41,26 @@ export class Tab2Page {
   getLocation() {
     const options = {
       enableHighAccuracy: true,  // use GPS
-      maximumAge        : 30000, // milliseconds e.g., 30000 === 30 seconds
-      timeout           : 27000  // milliseconds
+      maximumAge        : 3000, // milliseconds e.g., 30000 === 30 seconds
+      timeout           : 3000  // milliseconds
     };
-  
+    //TODO add listener on gps on
     this.geolocation.getCurrentPosition(options).then((resp) => {
-      console.log(resp);
       if(resp.coords){
         this.latitude = resp.coords.latitude;
         this.longitude = resp.coords.longitude;
       }
     }).catch((error) => {
       console.log('Error getting location', error);
-    });
+    }).finally(()=>{
+      let watch = this.geolocation.watchPosition(options);
+      this.subscription = watch.subscribe((data) => {
+        if(data.coords){
+          this.latitude = data.coords.latitude;
+          this.longitude = data.coords.longitude;
+        }
+      });
+    })
   }
 
   newPush(form) {
@@ -70,6 +80,14 @@ export class Tab2Page {
 
   unregister() {
     //this.oneSignal.setSubscription(false);
+  }
+
+  ionViewWillLeave() {
+    try {
+      this.subscription.unsubscribe();
+    } catch (error) {
+      console.error(error);
+    }
   }
 
 }
