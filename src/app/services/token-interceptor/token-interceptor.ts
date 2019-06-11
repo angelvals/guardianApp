@@ -37,8 +37,8 @@ export class TokenInterceptorProvider implements HttpInterceptor {
           catchError((err) => {
             if (err instanceof HttpErrorResponse) {
               if (err.status === 401) {
-                /* Show general error toast for all errors except usersession */
-                if (!req.url.includes('user/session')) {
+                /* Show general error toast for all errors except login */
+                if (!req.url.includes('auth/login')) {
                   this.toastService.presentStandardError(err.error, 'Session timed out. Please login again.');
                 }
                 this.token.deleteToken().subscribe();

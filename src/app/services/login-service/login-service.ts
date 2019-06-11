@@ -20,8 +20,8 @@ export class LoginService {
         return this.token.setToken(token);
       }),
       catchError((httperror: HttpErrorResponse) => {
-        if(!httperror.error.data) return this.userServices.showAlert('No network detected', 'Network Error');
-        return this.showToast(httperror.error.data.message);
+        if(!httperror.error.message) return this.userServices.showAlert('No network detected', 'Login Error');
+        return this.userServices.showAlert(httperror.error.message, 'Login Error');
       }),
     );
   }
