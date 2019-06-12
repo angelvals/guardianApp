@@ -35,6 +35,14 @@ export class UserServices {
         return this.http.post(PresentationUrlEndpointInfo.keys.sendPush, data);
     }
 
+    getPost() {
+        return this.http.get(PresentationUrlEndpointInfo.keys.post);
+    }
+
+    deletePost(data: any) {
+        return this.http.delete(`${PresentationUrlEndpointInfo.keys.post}/${data.id}`);
+    }
+
     //alerts
     async showAlert(message: string, title: string = 'Unhandled error') {
         const alert = await this.alertController.create({

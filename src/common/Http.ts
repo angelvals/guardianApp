@@ -12,6 +12,7 @@ export class PresentationUrlEndpointInfo {
       sendPush: 'push/sendNotification',
       registerPush: 'push/register',
       unRegisterPush: 'push/unRegister',
+      post: 'post/',
     };
   }
 
@@ -35,4 +36,5 @@ interface Keys {
   sendPush: string;
   registerPush: string;
   unRegisterPush: string;
+  post: string;
 }

@@ -21,8 +21,8 @@ export class LoadingInterceptor implements HttpInterceptor {
   $spinner = this.spinner.asObservable().pipe(
     tap(() => {
       if (!this.loading) {
-        // Remove the spinner after 3 seconds, if we did not manually (default and maximum)
-        this.loading = this.loadingController.create({ duration: 10000 }).then((load => {
+        // Remove the spinner after 15 seconds, if we did not manually (default and maximum)
+        this.loading = this.loadingController.create({ duration: 15000 }).then((load => {
           load.present();
         }));
       }

@@ -32,7 +32,7 @@ else
   echo "Cached version of platforms/android directory has been retrieved successfully."
 fi
 
-ionic cordova build android --release
+ionic cordova build android --prod --release
   jarsigner \
     -verbose \
     -sigalg SHA1withRSA \

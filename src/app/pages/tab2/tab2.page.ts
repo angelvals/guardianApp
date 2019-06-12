@@ -66,8 +66,10 @@ export class Tab2Page {
   newPush(form) {
     const data = { 
       players: this.players, 
-      heading: form.value.header,
-      text: form.value.text,
+      Header: form.value.header,
+      Content: form.value.text,
+      Latitude: this.latitude,
+      Longitude: this.longitude,
       data: {}
     };
     this.userServices.sendPush(data).pipe(

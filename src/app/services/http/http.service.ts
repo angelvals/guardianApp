@@ -16,6 +16,11 @@ export class HttpService {
     const full = `${PresentationUrlEndpointInfo.serviceUrl}/${endpoint}`;
     return this.http.put(full, body, reqOpts);
   }
+  
+  delete<T>(endpoint: string, reqOpts?): any {
+    const full = `${PresentationUrlEndpointInfo.serviceUrl}/${endpoint}`;
+    return this.http.delete(full, reqOpts);
+  }
 
   post<T>(endpoint: string, body?: T, reqOpts?): any {
     const full = `${PresentationUrlEndpointInfo.serviceUrl}/${endpoint}`;
