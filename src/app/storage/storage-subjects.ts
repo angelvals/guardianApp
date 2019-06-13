@@ -12,7 +12,7 @@ export class StorageSubjects{
   readonly notificationKey: string = 'notifications-status';
 
   //BehaviorSubjects
-  authenticationState = new BehaviorSubject<boolean>(true);
+  authenticationState = new BehaviorSubject<boolean>(false);
 
   constructor(private storage: Storage) {}
 

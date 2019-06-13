@@ -4,6 +4,8 @@ import { Socket } from 'ngx-socket-io';
 import { flatMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
+import * as moment from 'moment';
+
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -25,7 +27,7 @@ export class Tab1Page {
   getPost(event?) {
     this.userServices.getPost().pipe(
       flatMap((response) => {
-        this.post = response;
+        if(response.constructor === Array) this.post = response;
         if(event) event.target.complete();
         return of (null);
       })
@@ -44,9 +46,15 @@ export class Tab1Page {
   ionViewDidEnter() {
     this.socket.fromEvent("newPost").subscribe( (data: any) => {
       let exists = false
-      this.post.map((post: any) => exists = (post.id == data.id) );
+      this.post.map((post: any) => {
+        exists = (post.id == data.id); 
+      });
       if(!exists) this.post.push(data);
     });
     this.getPost();
+  }
+
+  formatTime(post) {
+    return moment(post.createdAt).format('MMM/DD/YY HH:mm:ss');
   }
 }
